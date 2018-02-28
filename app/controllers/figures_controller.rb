@@ -10,7 +10,7 @@ class FiguresController < ApplicationController
 	  erb :'/figures/new'
 	end
 
-	post '/figures' do
+	post '/figures/new' do
 	  @figure = Figure.create(params["figure"])
 
 	  if params[:title][:name] != ""
@@ -22,7 +22,7 @@ class FiguresController < ApplicationController
 	  @figure.titles << @title
 
 	  if params[:landmark][:name] != ""
-	  	@landmark = Landmark.update(params[:landmark])
+	  	@landmark = Landmark.create(params[:landmark])
 	  elsif params[:figure][:landmark_ids] != nil
 		@landmark = Landmark.find(params[:figure][:landmark_ids][0])
 	  end
